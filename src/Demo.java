@@ -11,7 +11,7 @@ public class Demo {
 
         // Create a label
         JLabel label
-            = new JLabel("porn  Premier League 2023");
+            = new JLabel("idk how jframe works");
 
         // Add the label to the frame
         frame.add(label);
