@@ -21,6 +21,8 @@ public class JavaSys {
       command.add("javac");
 command.add("-cp");
       command.add(config.classpath);
+      command.add("-d");
+      command.add("temp");
       
       
       // Add compiler flags if specified
@@ -94,7 +96,7 @@ command.add("-cp");
         outputThread.join(1000);
       }
 
-      // Build command
+      // d command
       List<String> command = new ArrayList<>();
       command.add("java");
       
@@ -106,9 +108,11 @@ command.add("-cp");
           }
         }
       }
-      
       command.add("-cp");
-      command.add(classpath);
+        String fullClasspath = classpath 
+                + System.getProperty("path.separator") 
+                + "temp";
+        command.add(fullClasspath);
       command.add(className);
       
       // Add application arguments
