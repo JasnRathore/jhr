@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import test2.IAmTest;
 
-// Driver Class
 public class Main {
     // main function
     public static void main(String[] args)
@@ -10,9 +10,10 @@ public class Main {
         JFrame frame = new JFrame("My 600th JFrame");
 
         Test to = new Test();
+        IAmTest t2 = new IAmTest();
         // Create a label
         JLabel label
-            = new JLabel(to.getContent());
+            = new JLabel(to.getContent() + t2.getContent());
 
         // Add the label to the frame
         frame.add(label);
