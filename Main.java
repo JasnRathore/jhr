@@ -65,7 +65,14 @@ public class Main {
         if (compilationSuccess) {
             System.out.println("\n🚀 Starting application: " + config.mainClass);
             System.out.println("─────────────────────────────────────");
-            sys.Run(config.mainClass, config.classpath, config.args);
+            
+            // If root directory is different from classpath, use root as classpath
+            String actualClasspath = config.classpath;
+            if (!config.root.equals(".") && !config.root.equals(config.classpath)) {
+                actualClasspath = config.root;
+            }
+            
+            sys.Run(config.mainClass, actualClasspath, config.args);
         } else {
             System.err.println("\n⚠  Skipping application start due to compilation errors");
         }

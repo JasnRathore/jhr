@@ -1,0 +1,21 @@
+BUILD_DIR="target"
+
+# Create the build directory if it doesn't exist
+mkdir -p $BUILD_DIR
+
+# Compile all Java files in the current directory
+javac -d $BUILD_DIR *.java
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+  echo "Compilation successful. Classes moved to $BUILD_DIR"
+else
+  echo "Compilation failed."
+fi
+
+jar cfe jhr.jar Main -C target .
+
+rm target/*.class
+mv jhr.jar target
+
+cp jhr target/jhr

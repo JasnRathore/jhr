@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 // Driver Class
-public class Demo {
+public class Main {
     // main function
     public static void main(String[] args)
     {

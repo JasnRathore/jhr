@@ -71,7 +71,7 @@ public class Config {
                         config.args = value.isEmpty() ? new String[]{} : value.split(" ");
                         break;
                     case "classpath":
-                        config.classpath = value;
+                        config.classpath = value.isEmpty() ? config.root : value;
                         break;
                     case "javac_flags":
                         config.javacFlags = value;
@@ -99,6 +99,11 @@ public class Config {
         } catch (IOException e) {
             System.err.println("Error reading config file: " + e.getMessage());
         }
+        
+        // If classpath is still default "src" but root is different, use root as classpath
+        if (config.classpath.equals("src") && !config.root.equals("src")) {
+            config.classpath = config.root;
+        }
 
         return config;
     }
@@ -113,7 +118,7 @@ public class Config {
         String defaultConfig = 
             "# JHR (Java Hot Reload) Configuration File\n" +
             "# Similar to .air.toml for Go\n\n" +
-            "# Root directory to watch\n" +
+            "# Root directory to watch (where your .java files are)\n" +
             "root = src\n\n" +
             "# Directories to watch (comma-separated, relative to root)\n" +
             "watch_dirs = .\n\n" +
@@ -122,11 +127,11 @@ public class Config {
             "# Directories to exclude from watching (comma-separated)\n" +
             "exclude_dirs = .git,tmp,vendor,target,build\n\n" +
             "# Main class to run (e.g., Demo or com.example.Main)\n" +
-            "main_class = Demo\n\n" +
+            "main_class = Main\n\n" +
             "# Additional arguments to pass to the main class\n" +
             "args = \n\n" +
-            "# Classpath for compilation and execution\n" +
-            "classpath = src\n\n" +
+            "# Classpath for compilation and execution (usually same as root)\n" +
+            "classpath = demo\n\n" +
             "# Additional compiler flags\n" +
             "javac_flags = \n\n" +
             "# JVM arguments (e.g., -Xmx512m)\n" +
