@@ -19,6 +19,9 @@ public class JavaSys {
     try {
       List<String> command = new ArrayList<>();
       command.add("javac");
+command.add("-cp");
+      command.add(config.classpath);
+      
       
       // Add compiler flags if specified
       if (!config.javacFlags.isEmpty()) {

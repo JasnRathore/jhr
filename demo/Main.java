@@ -9,9 +9,10 @@ public class Main {
         // Create a new JFrame
         JFrame frame = new JFrame("My 600th JFrame");
 
+        Test to = new Test();
         // Create a label
         JLabel label
-            = new JLabel("idk how jframe works");
+            = new JLabel(to.getContent());
 
         // Add the label to the frame
         frame.add(label);
