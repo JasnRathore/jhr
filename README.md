@@ -1,6 +1,3 @@
-Here's your README, crafted for a developer audience:
-
-````markdown
 # JHR — Java Hot Reload
 
 > Like Air, but for Java.
@@ -210,4 +207,3 @@ Pull requests and issues are welcome.
 ---
 
 *JHR — because the feedback loop between writing Java and seeing it run should be measured in milliseconds, not keystrokes.*
-````
