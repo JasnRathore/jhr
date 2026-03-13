@@ -19,12 +19,11 @@ public class JavaSys {
     try {
       List<String> command = new ArrayList<>();
       command.add("javac");
-command.add("-cp");
+      command.add("-cp");
       command.add(config.classpath);
       command.add("-d");
       command.add("temp");
-      
-      
+
       // Add compiler flags if specified
       if (!config.javacFlags.isEmpty()) {
         for (String flag : config.javacFlags.split(" ")) {
@@ -33,7 +32,7 @@ command.add("-cp");
           }
         }
       }
-      
+
       command.add(path);
 
       ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -66,7 +65,7 @@ command.add("-cp");
         if (!errorOutput.isEmpty()) {
           System.err.println(errorOutput);
         }
-        
+
         // Show error overlay
         hasError = true;
         ErrorOverlay.showCompilationError(path, errorOutput);
@@ -99,7 +98,7 @@ command.add("-cp");
       // d command
       List<String> command = new ArrayList<>();
       command.add("java");
-      
+
       // Add JVM arguments if specified
       if (!config.jvmArgs.isEmpty()) {
         for (String arg : config.jvmArgs.split(" ")) {
@@ -109,12 +108,12 @@ command.add("-cp");
         }
       }
       command.add("-cp");
-        String fullClasspath = classpath 
-                + System.getProperty("path.separator") 
-                + "temp";
-        command.add(fullClasspath);
+      String fullClasspath = classpath
+          + System.getProperty("path.separator")
+          + "temp";
+      command.add(fullClasspath);
       command.add(className);
-      
+
       // Add application arguments
       for (String arg : args) {
         if (!arg.isEmpty()) {
@@ -141,7 +140,7 @@ command.add("-cp");
               while ((errLine = stdErr.readLine()) != null) {
                 System.err.println(errLine);
                 errorOutput.append(errLine).append("\n");
-                
+
                 // Detect runtime errors
                 if (errLine.contains("Exception") || errLine.contains("Error")) {
                   synchronized (errorOutput) {
@@ -162,12 +161,12 @@ command.add("-cp");
           }
 
           int exitCode = runningProcess.waitFor();
-          
+
           // Wait a bit for stderr to finish
           stderrThread.join(500);
-          
+
           String errorStr = errorOutput.toString().trim();
-          
+
           if (exitCode != 0 && !errorStr.isEmpty()) {
             System.err.println("\n⚠  Process exited with code: " + exitCode);
             hasError = true;

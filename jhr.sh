@@ -2,7 +2,3 @@ script_dir=$(dirname "$(readlink -f "$0")")
 echo $script_dir
 
 java -jar "${script_dir}/jhr.jar" "$@"
-
-
-
-

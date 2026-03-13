@@ -2,4 +2,6 @@
 */*.class
 .jhr.conf
 src
-target
+target/
+release/
+JavaHotReloaderSetup@*.exe
